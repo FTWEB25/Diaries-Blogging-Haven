@@ -1,33 +1,41 @@
-const { verify } = require("../config/bcrypt");
+const { verify, hashing } = require("../config/bcrypt");
 const { generateToken } = require("../config/token");
 const UserModel = require("../models/user.model");
 
 const register = async (req, res) => {
+   
   try {
     const { name, email, password } = req.body;
-    if (!name || !email || !password || !req.file) {
-      return res
-        .status(400)
-        .json({ msg: "Please provide all required fields." });
+    const userExist = await UserModel.findOne({email});
+    if (userExist) {
+        return res.status(409).json({msg:"User alreasdy exist"})
+    } else {
+      if (!name || !email || !password || !req.file) {
+        return res
+          .status(400)
+          .json({ msg: "Please provide all required fields." });
+      }
+      const hashedPassword=await hashing(password)
+
+      const newUser = new UserModel({
+        name,
+        email,
+        password:hashedPassword,
+        image: req.file.filename,
+      });
+      const savedUser = await newUser.save();
+      const token = generateToken(savedUser._id);
+      res.status(201).json({
+        message: "User registered successfully.",
+        user: {
+          _id: savedUser._id,
+          name: savedUser.name,
+          email: savedUser.email,
+          image: savedUser.image,
+          token,
+        },
+      });
     }
-    const newUser = new UserModel({
-      name,
-      email,
-      password,
-      image: req.file.filename,
-    });
-    const savedUser = await newUser.save();
-     const token = generateToken(savedUser._id);
-    res.status(201).json({
-      message: "User registered successfully.",
-      user: {
-        _id: savedUser._id,
-        name: savedUser.name,
-        email: savedUser.email,
-        image: savedUser.image,
-        token
-      },
-    });
   } catch (error) {
     console.error("Error in registration:", error);
     res.status(500).json({ msg: "Internal server error." });
@@ -70,4 +78,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports={register,login}
+module.exports = { register, login };
