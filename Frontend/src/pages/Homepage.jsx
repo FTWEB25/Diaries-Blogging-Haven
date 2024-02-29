@@ -7,7 +7,6 @@ import BlogCard from "../components/BlogCard";
 function Homepage() {
   const [blogs, setBlogs] = useState([]);
   const [page, setPage] = useState(1);
-
   const getBlogs = async (pageNumber) => {
     try {
       const response = await axios.get(
