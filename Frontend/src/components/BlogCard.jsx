@@ -22,7 +22,12 @@ function BlogCard({ blog }) {
       width={"60%"}
       margin="10px auto"
     >
-      <Image width={"50%"} margin={"auto"} src={`http://localhost:8080/blogs/images/${blog.image}`} alt={blog.title} />
+      <Image
+        width={"50%"}
+        margin={"auto"}
+        src={`https://react-app-a0ys.onrender.com/blogs/images/${blog.image}`}
+        alt={blog.title}
+      />
       <Box p="6">
         <Box d="flex" alignItems="baseline">
           <Badge borderRadius="full" px="2" colorScheme="teal">

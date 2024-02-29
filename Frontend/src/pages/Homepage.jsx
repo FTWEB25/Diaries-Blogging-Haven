@@ -10,7 +10,7 @@ function Homepage() {
   const getBlogs = async (pageNumber) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/blogs?page=${pageNumber}`
+        `https://react-app-a0ys.onrender.com/blogs?page=${pageNumber}`
       );
       setBlogs(response.data.msg);
       if(response.data.msg.length==0){

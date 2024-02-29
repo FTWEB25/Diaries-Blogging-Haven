@@ -35,11 +35,15 @@ function Signup() {
     formDataToSend.append("password", formData.password);
     formDataToSend.append("image", formData.image);
     axios
-      .post("http://localhost:8080/users/register", formDataToSend, {
-        headers: {
-          "Content-type": "multipart/form-data",
-        },
-      })
+      .post(
+        "https://react-app-a0ys.onrender.com/users/register",
+        formDataToSend,
+        {
+          headers: {
+            "Content-type": "multipart/form-data",
+          },
+        }
+      )
       .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data.user));
         console.log(response.data);

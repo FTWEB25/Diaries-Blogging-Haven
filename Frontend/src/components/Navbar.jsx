@@ -46,7 +46,11 @@ function Navbar() {
     >
       {/* Logo */}
       <Box>
-        <Image src="/logo.png" alt="Logo" boxSize="40px" />
+        <Image
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRi21OYZiDZ8ekw-2aKEAtTi1n9WBHbFfOvDA&usqp=CAU"
+          alt="Logo"
+          boxSize="40px"
+        />
       </Box>
 
       <Box display={"flex"} gap={5}>

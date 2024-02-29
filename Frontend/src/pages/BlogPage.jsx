@@ -36,12 +36,16 @@ function BlogPage() {
         formDataToSend.append("category", formData.category);
         formDataToSend.append("description", formData.description);
         axios
-          .post("http://localhost:8080/blogs/create", formDataToSend, {
-            headers: {
-              "Content-type": "multipart/form-data",
-              "Authorization":`Bearer ${user.token}`
-            },
-          })
+          .post(
+            "https://react-app-a0ys.onrender.com/blogs/create",
+            formDataToSend,
+            {
+              headers: {
+                "Content-type": "multipart/form-data",
+                Authorization: `Bearer ${user.token}`,
+              },
+            }
+          )
           .then((response) => {
             console.log(response.data);
           })

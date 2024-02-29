@@ -16,7 +16,7 @@ function CustomAvatar({ handleLogout, user }) {
       <MenuButton
         as={Avatar}
         name={user.name}
-        src={`http://localhost:8080/users/images/${user.image}`}
+        src={`https://react-app-a0ys.onrender.com/users/images/${user.image}`}
       />
       <MenuList>
         <MenuGroup color={"blueviolet"} title="Profile">
