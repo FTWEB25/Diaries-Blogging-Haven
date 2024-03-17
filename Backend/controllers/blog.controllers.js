@@ -1,5 +1,6 @@
 const BlogModel = require("../models/blog.model");
 
+
 const createBlog = async (req, res) => {
     const {title,category,description}=req.body
     try {
@@ -26,8 +27,8 @@ const createBlog = async (req, res) => {
 //http://localhost:8080/blogs?category=${category}
 //http://localhost:8080/blogs?limit=3&&skip=1
 const getBlogs = async (req, res) => {
-  const { page , search = "", category, sort, order = "asc" } = req.query;
-  const limit = 2; 
+  const { page, search = "", category, sort, order = "asc" } = req.query;
+  const limit = 2;
 
   let query = {};
   let sortQuery = {};
@@ -57,6 +58,7 @@ const getBlogs = async (req, res) => {
     res.status(500).json({ msg: "Internal server error" });
   }
 };
+
 
 const updateBlog = async (req, res) => {};
 const deleteBlog = async (req, res) => {};
